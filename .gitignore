@@ -1,0 +1,7 @@
+token.js
+.env
+*.session
+sessions/
+database/auth.json
+allfunc/owner.json
+node_modules/
