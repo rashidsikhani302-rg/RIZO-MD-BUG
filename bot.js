@@ -6,7 +6,8 @@ const fs2 = require("fs");
 const path = require('path');
 const chalk = require('chalk');
 const { sleep } = require('./utils');
-const { BOT_TOKEN } = require('./token');
+const BOT_TOKEN = process.env.BOT_TOKEN;
+if (!BOT_TOKEN) throw new Error('BOT_TOKEN environment variable is required');
 const { autoLoadPairs } = require('./autoload');
 const axios = require("axios");
 
