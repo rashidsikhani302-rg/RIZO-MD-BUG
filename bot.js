@@ -85,24 +85,8 @@ const gracefulShutdown = (signal) => {
 };
 
 // ========== CHECK CHANNELS ==========
-const checkUserJoinedChannels = async (userId) => {
-    const channels = ['@https://t.me/rizoxnbtech'];
-    let allJoined = true;
-
-    for (const channel of channels) {
-        try {
-            const member = await bot.getChatMember(channel, userId);
-            if (['left', 'kicked'].includes(member.status)) {
-                allJoined = false;
-                break;
-            }
-        } catch {
-            allJoined = false;
-            break;
-        }
-    }
-    return allJoined;
-};
+// Force-join disabled: users can use /pair without joining a channel.
+const checkUserJoinedChannels = async (_userId) => true;
 
 // ========== SEND CHANNELS REQUIRED ==========
 const sendChannelsRequiredMessage = async (chatId) => {
@@ -203,11 +187,10 @@ Example: \`/pair 92370xxxx\`
  ╞═══════𖠁𐂃𖠁═══════╡
     `;
 
-    const imageUrl = "https://i.postimg.cc/9XxMCVLF/Screenshot-20250802-114226-3.jpg";
+    const menuImagePath = path.join(__dirname, 'media', 'image1.jpg');
 
     try {
-        const imgRes = await axios.get(imageUrl, { responseType: 'arraybuffer', timeout: 10000 });
-        const imgBuffer = Buffer.from(imgRes.data);
+        const imgBuffer = await fs.readFile(menuImagePath);
 
         await bot.sendPhoto(userId, imgBuffer, {
             caption: menuText,
