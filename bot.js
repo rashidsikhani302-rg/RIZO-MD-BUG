@@ -12,7 +12,7 @@ const { autoLoadPairs } = require('./autoload');
 const axios = require("axios");
 
 // ========== BOT INITIALIZATION ==========
-const bot = new TelegramBot(BOT_TOKEN, { polling: true });
+const bot = new TelegramBot(BOT_TOKEN, { polling: false });
 const adminFilePath = path.join(__dirname, 'kingbadboitimewisher', 'admin.json');
 let adminIDs = [];
 const userStates = new Map();
@@ -501,5 +501,15 @@ process.on('message', (msg) => {
     if (msg === 'shutdown') gracefulShutdown('PM2_SHUTDOWN');
 });
 
-console.log('🤖 RIZO TOXIC Bot started successfully!');
-console.log('📱 Bot is running...');
+(async () => {
+    try {
+        await bot.deleteWebHook({ drop_pending_updates: false });
+        await bot.startPolling();
+        const me = await bot.getMe();
+        console.log(`🤖 Telegram connected as @${me.username}`);
+        console.log('📱 Bot is running and polling for messages...');
+    } catch (error) {
+        console.error('❌ Telegram startup failed:', error.message);
+        console.error('Check Railway variable BOT_TOKEN and make sure no second bot instance is running.');
+    }
+})();
