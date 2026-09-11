@@ -8031,7 +8031,7 @@ case "ytmp4": {
         {
             headers: {
                 'content-type': 'application/json',
-                'x-rapidapi-key': 'e73bff0542msha94d08136fc4eeep184ff6jsn5bcade1d7824',
+                'x-rapidapi-key': '${RAPIDAPI_KEY}',
                 'x-rapidapi-host': 'youtube-video-audio-downloader.p.rapidapi.com'
             }
         });
@@ -8324,7 +8324,7 @@ case "fbdl": {
         const response = await axios.get('https://facebook-scraper3.p.rapidapi.com/video', {
             params: { url: text },
             headers: {
-                'x-rapidapi-key': 'e73bff0542msha94d08136fc4eeep184ff6jsn5bcade1d7824',
+                'x-rapidapi-key': '${RAPIDAPI_KEY}',
                 'x-rapidapi-host': 'facebook-scraper3.p.rapidapi.com'
             }
         });
@@ -8373,7 +8373,7 @@ case "x": {
         const response = await axios.get('https://twitter-video-and-image-downloader.p.rapidapi.com/api/twitter/media', {
             params: { url: text },
             headers: {
-                'x-rapidapi-key': 'e73bff0542msha94d08136fc4eeep184ff6jsn5bcade1d7824',
+                'x-rapidapi-key': '${RAPIDAPI_KEY}',
                 'x-rapidapi-host': 'twitter-video-and-image-downloader.p.rapidapi.com'
             }
         });
@@ -8437,7 +8437,7 @@ case "gen3": {
         {
             headers: {
                 'content-type': 'application/json',
-                'x-rapidapi-key': 'e73bff0542msha94d08136fc4eeep184ff6jsn5bcade1d7824',
+                'x-rapidapi-key': '${RAPIDAPI_KEY}',
                 'x-rapidapi-host': 'runwayml.p.rapidapi.com'
             }
         });
@@ -11800,7 +11800,7 @@ case 'movie': {
     try {
         await reply('🎬 sᴇᴀʀᴄʜɪɴɢ ᴍᴏᴠɪᴇ...');
         
-        const response = await fetch(`https://www.omdbapi.com/?apikey=c7d9eed3&t=${encodeURIComponent(text)}`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(text)}`);
         const data = await response.json();
         
         if (data.Response === 'False') return reply('❌ ᴍᴏᴠɪᴇ ɴᴏᴛ ғᴏᴜɴᴅ!');
